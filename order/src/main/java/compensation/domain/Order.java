@@ -50,21 +50,11 @@ public class Order {
         return orderRepository;
     }
 
-    public void order() {
-        //implement business logic here:
-
-        OrderPlaced orderPlaced = new OrderPlaced(this);
-        orderPlaced.publishAfterCommit();
-
+    public void checkStock(CheckStockCommand checkStockCommand) {
         compensation.external.CheckStockQuery checkStockQuery = new compensation.external.CheckStockQuery();
         OrderApplication.applicationContext
             .getBean(compensation.external.InventoryService.class)
             .checkStock(checkStockQuery);
-    }
-
-    public void cancel() {
-        //implement business logic here:
-
     }
 
     //<<< Clean Arch / Port Method
